@@ -19,12 +19,18 @@ app.use('/user', userRoutes);
 app.use('/task',authentication.restrictToLoggedInUserOnly, taskRoutes);
 
 //connect mongoDB
-mongoose.connect(process.env.MONGO_URL).then(()=>{
-    console.log("Database Connected...");
+// mongoose.connect(process.env.MONGO_URL).then(()=>{
+//     console.log("Database Connected...");
+// });
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  tls: true, // Force TLS
+  tlsAllowInvalidCertificates: false, // Reject invalid certs
 });
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT,()=>{
-    console.log("Server started...");
+    console.log("Server started...",PORT);
 })
 
