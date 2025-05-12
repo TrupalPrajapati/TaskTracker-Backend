@@ -73,7 +73,8 @@ const forgotPassword = async(req,res) => {
         const token = jwtAuth.resetPasswordToken(user);
         console.log(token);
     
-        const url = `http://localhost:5173/resetpassword/${token}`;
+        const FRONTEND_URL = process.env.FRONTEND_URL || "https://task-tracker-frontend-three.vercel.app/";
+        const url = `${FRONTEND_URL}resetpassword/${token}`;
         const mailContent = `<html>
                                 <a href = "${url}">Click here to reset Password</a>
                             </html>`;
