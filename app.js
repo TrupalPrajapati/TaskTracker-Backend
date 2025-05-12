@@ -18,6 +18,11 @@ const taskRoutes = require('./routes/taskRoutes');
 app.use('/user', userRoutes);
 app.use('/task',authentication.restrictToLoggedInUserOnly, taskRoutes);
 
+//root route for check deployment 
+app.get('/',(req,res)=>{
+    res.send('API is running');
+})
+
 //connect mongoDB
 // mongoose.connect(process.env.MONGO_URL).then(()=>{
 //     console.log("Database Connected...");
