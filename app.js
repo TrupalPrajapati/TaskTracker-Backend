@@ -26,8 +26,12 @@ mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   tls: true, // Force TLS
-  tlsAllowInvalidCertificates: false, // Reject invalid certs
-});
+  tlsAllowInvalidCertificates: false, // Reject invalid certs  
+}).then(()=>{
+    console.log("MongoDB connected...");
+}).catch((err)=>{
+    console.log("MongoDB connection Error:", err);
+})
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT,()=>{
