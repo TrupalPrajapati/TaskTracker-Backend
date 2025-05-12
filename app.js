@@ -6,7 +6,16 @@ const  authentication = require("./middleware/authentication")
 const dotenv = require('dotenv');
 dotenv.config();
 
-app.use(cors()); // Allow all origins by default
+// app.use(cors()); // Allow all origins by default
+
+app.use(cors({
+  origin: [
+    "https://task-tracker-frontend-three.vercel.app",
+    "http://localhost:5173"
+  ]
+}));
+
+
 //to accept data as a json in req.body
 app.use(express.json());
 
